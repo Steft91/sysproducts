@@ -1,0 +1,33 @@
+<div class="category-list d-flex flex-column align-items-center py-4" style="background: var(--color-bg); min-height: 100vh;">
+  <div class="d-flex justify-content-between align-items-center mb-3 w-100" style="max-width: 900px;">
+    <h2 class="mb-0" style="color: var(--color-text);" class="titcateg">Categorías</h2>
+    <button class="btn btn-accent" (click)="addCategory()" style="background: var(--color-accent); color: #fff;">Nueva Categoría</button>
+  </div>
+  <div class="table-responsive w-100" style="max-width: 100vw;">
+    <table class="table table-bordered table-hover text-center align-middle" style="background: var(--color-surface); border-color: var(--color-border); margin: 0 auto;">
+      <thead style="background: var(--color-accent); color: #fff;">
+        <tr>
+          <th style="min-width: 140px;">Nombre</th>
+          <th>Descripción</th>
+          <th>Creado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td>{{ category.name }}</td>
+          <td>{{ category.description }}</td>
+          <td>{{ category.createdAt ? (category.createdAt | date:'yyyy-MM-dd HH:mm:ss':'America/Guayaquil') : '' }}</td>
+          <td>
+            <button class="btn btn-accent btn-sm rounded-pill fw-bold px-3 py-1 me-2 d-inline-flex align-items-center gap-2 shadow-sm" (click)="editCategory(category)" style="background: var(--color-accent); color: #fff; font-size: 0.98rem;">
+              <i class="fa-solid fa-pen-to-square"></i> Editar
+            </button>
+            <button class="btn btn-danger btn-sm rounded-pill fw-bold px-3 py-1 d-inline-flex align-items-center gap-2 shadow-sm" (click)="deleteCategory(category.id)" style="background: #e57373; color: #fff; font-size: 0.98rem;">
+              <i class="fa-solid fa-trash"></i> Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

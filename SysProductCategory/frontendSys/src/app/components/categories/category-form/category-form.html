@@ -1,0 +1,29 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="bg-white p-4 rounded shadow-sm w-100" style="max-width: 500px; margin: 2rem auto; border: 1px solid var(--color-border); min-width: 0;">
+  <div class="mb-3">
+    <label class="form-label">Nombre:</label>
+    <input class="form-control" formControlName="name" />
+    <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="text-danger small mt-1">
+      <ng-container *ngIf="form.get('name')?.errors?.['required'] || form.get('name')?.errors?.['minlength']">
+        El nombre es obligatorio y debe tener al menos 2 caracteres.<br>
+      </ng-container>
+      <ng-container *ngIf="form.get('name')?.errors?.['specialChars']">
+        El nombre no debe contener caracteres especiales.
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Descripción:</label>
+    <input class="form-control" formControlName="description" />
+    <div *ngIf="form.get('description')?.invalid && form.get('description')?.touched" class="text-danger small mt-1">
+      La descripción no debe contener caracteres especiales.
+    </div>
+  </div>
+
+  <div *ngIf="isEdit" class="mb-3">
+    <label class="form-label">Fecha de creación:</label>
+    <input class="form-control" [value]="createdAt" readonly />
+  </div>
+
+  <button type="submit" class="btn btn-accent w-100" [disabled]="form.invalid" style="background: var(--color-accent); color: #fff;">Guardar</button>
+</form>

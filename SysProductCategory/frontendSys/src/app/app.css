@@ -1,0 +1,48 @@
+/* Main app layout */
+:root {
+  --header-height: 60px;
+  --footer-height: 200px; /* Ajusta según la altura de tu footer */
+}
+
+/* Estilos base para el layout */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Contenido principal que empuja el footer hacia abajo */
+.main-content {
+  flex: 1 0 auto;
+  padding: 1rem 0;
+  width: 100%;
+  margin-top: var(--header-height);
+  margin-bottom: 2rem;
+}
+
+/* Asegurar que el footer se quede abajo */
+app-footer {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 0.5rem;
+    margin-top: calc(var(--header-height) + 0.5rem);
+  }
+  
+  :root {
+    --footer-height: auto;
+  }
+}
